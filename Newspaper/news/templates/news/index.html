@@ -2,4 +2,49 @@
 
 {% block title%}News Index{% endblock title %}
 
-{% block content %}Here be news and articles{% endblock content %}
+{% block content %}
+
+<div class="row">
+    <div class="col-3"></div>
+    <div class="col">
+        {% if posts_list %}
+        <div class="grid">
+            {% for post in posts_list %}
+            <div class="card grid-item">
+                <header>
+                    <h5><a href="{% url 'news_details' post.id %}">{{ post.title }}</a></h5>
+                </header>
+                <p>{{ post.preview }}</p>
+                <footer class="is-right">
+                    {{ post.timestamp }}
+                </footer>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <p>No posts yet</p>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock content %}
+
+{% block footerscripts %}
+
+<script language="JavaScript">
+    var elem = document.querySelector('.grid');
+    var msnry = new Masonry( elem, {
+      // options
+      itemSelector: '.grid-item',
+      columnWidth: 200
+    });
+
+    // element argument can be a selector string
+    //   for an individual element
+    var msnry = new Masonry( '.grid', {
+      // options
+    });
+</script>
+
+
+{% endblock footerscripts %}
