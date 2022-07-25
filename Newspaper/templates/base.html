@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://unpkg.com/chota@latest">
+    <title>{% block title%}{% endblock title %}</title>
+    {% block headscripts %}{% endblock headscripts %}
+</head>
+<body>
+<nav class="nav">
+    <div class="nav-left">
+        <a href="#" class="brand">OnlyNews</a>
+        <div class="tabs">
+            <a href="/">Home</a>
+            <a href="/news/">News</a>
+        </div>
+    </div>
+    <div class="nav-right">
+        <a href="#" class="button outline">Login</a>
+    </div>
+</nav>
+<div class="container">
+    {% block content %}{% endblock content %}
+</div>
+
+<footer>
+    {% block footerscripts %}{% endblock footerscripts %}
+</footer>
+
+</body>
+</html>
