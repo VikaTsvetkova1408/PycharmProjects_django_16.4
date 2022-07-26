@@ -7,5 +7,7 @@ BADWORDS = ['carrot', 'radish']
 
 @register.filter(name='profanity')
 def profanity(value):
-
-    return value.replace('')
+    result = value
+    for word in BADWORDS:
+        result = result.replace(word, '#' * len(word))
+    return result

@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% load tags_extra %}
+
 {% block title%}
 {{ post.title }}
 {% endblock title %}
@@ -44,7 +46,7 @@
             <div>{{ comment.author }}</div>
         </div>
         <div class="col">
-            {{ comment.text }}
+            {{ comment.text|profanity }}
         </div>
     </div>
     <div class="small-space"></div>
