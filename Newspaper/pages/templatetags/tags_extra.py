@@ -1,3 +1,4 @@
+import re
 from django import template
 
 register = template.Library()
@@ -11,8 +12,7 @@ def profanity(value):
     Very basic profanity filter
     """
 
-    # TODO use regexp
     result = value
     for word in BADWORDS:
-        result = result.replace(word, '#' * len(word))
+        result = re.sub(word, '#' * len(word), result, flags=re.IGNORECASE)
     return result
