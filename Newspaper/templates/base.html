@@ -2,31 +2,63 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://unpkg.com/chota@latest">
-    <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/beercss@2.1.3/dist/cdn/beer.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/beercss@2.1.3/dist/cdn/beer.min.js" type="text/javascript"></script>
+    <script src="https://cdn.jsdelivr.net/npm/material-dynamic-colors@0.0.10/dist/cdn/material-dynamic-colors.min.js" type="text/javascript"></script>
+
     <title>{% block title%}{% endblock title %}</title>
     {% block headscripts %}{% endblock headscripts %}
+
+    {% block headstyles %}
+    {% load static %}
+    {% include 'styles.html' %}
+    {% endblock %}
 </head>
-<body>
-<nav class="nav">
-    <div class="nav-left">
-        <a href="#" class="brand">OnlyNews</a>
-        <div class="tabs">
-            <a href="/">Home</a>
-            <a href="/news/">News</a>
+<body class="light">
+
+<nav class="top">
+    <div class="row no-wrap middle-align">
+        <div class="col">
+            <nav class="padding">
+                <button class="none m l" data-ui="#modal-menu"><i>menu</i></button>
+                <a href="#">OnlyNews</a>
+            </nav>
+        </div>
+        <div class="col"></div>
+        <div class="col">
+            <nav class="right-align">
+                <button class="round">
+                    <i>account_circle</i>
+                    <span>Log In</span>
+                </button>
+            </nav>
         </div>
     </div>
-    <div class="nav-right">
-        <a href="#" class="button outline">Login</a>
-    </div>
 </nav>
-<div class="container">
-    {% block content %}{% endblock content %}
+
+<div class="overlay"></div>
+
+<main class="responsive">
+    <div class="page active">
+        {% block content %}{% endblock content %}
+    </div>
+</main>
+
+<div class="modal left small" id="modal-menu">
+    <nav>
+        <button class="none m l" data-ui="#modal-menu"><i>menu</i></button>
+        <a href="#">OnlyNews</a>
+    </nav>
+    <div class="medium-space"></div>
+    <a href="/" class="row no-wrap">Home</a>
+    <a href="/news" class="row no-wrap">News</a>
+    <a href="/" class="row no-wrap">Tyry</a>
+    <a href="/" class="row no-wrap">Pyry</a>
 </div>
 
-<footer>
-    {% block footerscripts %}{% endblock footerscripts %}
-</footer>
+{% block footerscripts %}
+{% endblock footerscripts %}
 
 </body>
 </html>
