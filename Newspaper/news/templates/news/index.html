@@ -30,5 +30,17 @@
         {% endfor %}
 </div>
 
+<div class="row">
+    <nav class="middle-align">
+        {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}" class="chip round"><i>arrow_backward</i> {{ page_obj.previous_page_number }}</a>
+        {% endif %}
+        <span class="chip round border">{{ page_obj.number }}</span>
+        {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}" class="chip round">{{ page_obj.next_page_number }} <i>arrow_forward</i></a>
+        {% endif %}
+    </nav>
+</div>
+
 {% endblock content %}
 

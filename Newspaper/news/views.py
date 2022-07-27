@@ -6,11 +6,11 @@ from .models import Author, Post, Category, Comment
 
 
 class IndexView(generic.ListView):
+    model = Post
+    ordering = 'timestamp'
+    paginate_by = 2
     template_name = 'news/index.html'
     context_object_name = 'posts_list'
-
-    def get_queryset(self):
-        return Post.objects.order_by('timestamp')
 
 
 class DetailView(generic.DetailView):
