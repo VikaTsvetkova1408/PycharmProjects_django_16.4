@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title%}News search{% endblock title %}
+
+{% block content %}
+
+<div class="row padding">
+    <form action="" method="get">
+        {% for field in filterset.form %}
+        <div class="row">
+            <div class="field">
+            {{ field.errors }}
+            {{ field.label_tag }} {{ field }}
+            </div>
+        </div>
+        {% endfor %}
+        <input type="submit" class="button border" value="Search" />
+    </form>
+</div>
+
+<div class="small-space"></div>
+
+<div class="row">
+    <h4>Search results:</h4>
+    {% for post in posts_list %}
+        <div class="row padding card">
+            <a href="{% url 'news:news_detail' post.id %}">{{ post.title }}</a>
+        </div>
+    {% endfor %}
+</div>
+
+{% endblock content %}

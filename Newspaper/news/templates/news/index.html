@@ -4,6 +4,8 @@
 
 {% block content %}
 
+<div class="small-space"></div>
+
 <div class="row">
         {% for post in posts_list %}
         <div class="col s12 m6 l6">
@@ -24,7 +26,7 @@
                         <div class="space"></div>
                     </div>
                 </div>
-                <div class="absolute bottom right small-margin small-text">{{ post.timestamp|date:'n E Y' }}</div>
+                <div class="absolute bottom right small-margin small-text">{{ post.timestamp|date:'d E Y' }}</div>
             </article>
         </div>
         {% endfor %}

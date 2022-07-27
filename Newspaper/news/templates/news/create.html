@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% load tags_extra %}
+
+{% block title%}
+New Post
+{% endblock title %}
+
+{% block content %}
+<form action="{% if post_type == 'NW' %}{% url 'news:news_create' %}{% else %}{% url 'news:articles_create' %}{% endif %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Save" />
+</form>
+{% endblock content %}

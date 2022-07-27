@@ -12,6 +12,13 @@
         <div class="col min">
             <i class="large">person</i>
             <div>{{ post.author }}</div>
+            <div>
+                {% if post.type == 'AR' %}
+                <i>article</i>
+                {% else %}
+                <i>whatshot</i>
+                {% endif %}
+            </div>
         </div>
         <div class="col">
             <h4>{{ post.title }}</h4>
@@ -33,7 +40,7 @@
         </div>
     </div>
 
-    <div class="absolute right bottom small-margin small-text">{{ post.timestamp|date:'n E Y H:i' }}</div>
+    <div class="absolute right bottom small-margin small-text">{{ post.timestamp|date:'d E Y H:i' }}</div>
 </article>
 
 <div class="space"></div>
@@ -61,7 +68,7 @@
         </div>
     </div>
 
-    <div class="absolute right bottom small-margin small-text no-wrap">{{ comment.timestamp|date:'n E Y H:i:s' }}</div>
+    <div class="absolute right bottom small-margin small-text no-wrap">{{ comment.timestamp|date:'d E Y H:i:s' }}</div>
 </article>
 {% endfor %}
 

@@ -17,6 +17,88 @@
 </head>
 <body class="light">
 
+<nav class="left flat m l">
+    <div class="large-space"></div>
+    <div class="large-space"></div>
+    <a href="/">
+        <i>home</i>
+        <div>Home</div>
+    </a>
+    <a data-ui="#news-menu">
+        <i>newspaper</i>
+        <div>News</div>
+    </a>
+
+    <a data-ui="#articles-menu">
+        <i>articles</i>
+        <div>Articles</div>
+    </a>
+
+    <a href="{% url 'news:news_search' %}">
+        <i>search</i>
+        <div>Search</div>
+    </a>
+
+    <div id="news-menu" class="modal small left no-scroll">
+        <div class="large-space"></div>
+        <div class="large-space"></div>
+        <div class="row">
+            <a href="{% url 'news:news_index' %}">
+                <i>list_alt</i>
+                <div>List</div>
+            </a>
+        </div>
+
+        <div class="row">
+            <a href="{% url 'news:news_create' %}">
+                <i>add</i>
+                <div>Create News</div>
+            </a>
+        </div>
+        <div class="row">
+            <a href="{% url 'news:news_create' %}">
+                <i>edit</i>
+                <div>Edit News</div>
+            </a>
+        </div>
+        <div class="row">
+            <a href="{% url 'news:news_delete' 0 %}">
+                <i>delete</i>
+                <div>Delete News</div>
+            </a>
+        </div>
+    </div>
+
+    <div id="articles-menu" class="modal small left no-scroll">
+        <div class="large-space"></div>
+        <div class="large-space"></div>
+        <div class="row">
+            <a href="{% url 'news:articles_index' %}">
+                <i>list</i>
+                <div>List</div>
+            </a>
+        </div>
+        <div class="row">
+            <a href="{% url 'news:articles_create' %}">
+                <i>add</i>
+                <div>Create Article</div>
+            </a>
+        </div>
+        <div class="row">
+            <a href="{% url 'news:articles_edit' %}">
+                <i>edit</i>
+                <div>Article Edit</div>
+            </a>
+        </div>
+        <div class="row">
+            <a href="{% url 'news:articles_delete' 0 %}">
+                <i>delete</i>
+                <div>Article Delete</div>
+            </a>
+        </div>
+    </div>
+</nav>
+
 <nav class="top">
     <div class="row no-wrap middle-align">
         <div class="col">
@@ -37,6 +119,8 @@
     </div>
 </nav>
 
+
+
 <div class="overlay"></div>
 
 <main class="responsive">
@@ -53,8 +137,8 @@
     <div class="medium-space"></div>
     <a href="/" class="row no-wrap">Home</a>
     <a href="/news" class="row no-wrap">News</a>
-    <a href="/" class="row no-wrap">Tyry</a>
-    <a href="/" class="row no-wrap">Pyry</a>
+    <a href="#" class="row no-wrap">Tyry</a>
+    <a href="#" class="row no-wrap">Pyry</a>
 </div>
 
 {% block footerscripts %}
