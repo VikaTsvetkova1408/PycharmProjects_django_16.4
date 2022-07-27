@@ -12,17 +12,8 @@ class IndexView(generic.ListView):
     def get_queryset(self):
         return Post.objects.order_by('timestamp')
 
+
 class DetailView(generic.DetailView):
     model = Post
     template_name = 'news/detail.html'
-
-# def news_index(request):
-#     posts_list = get_list_or_404(Post.objects.order_by('timestamp'))
-#     context = {'posts_list': posts_list}
-#     return render(request, 'news/index.html', context)
-#
-#
-# def news_detail(request, news_id):
-#     post = get_object_or_404(Post, pk=news_id)
-#     return render(request, 'news/detail.html', {'post': post})
 
