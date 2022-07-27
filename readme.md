@@ -7,3 +7,7 @@ Commands for Django shell in cmd.py
 #### D6.6
 
 Censor filter is called `profanity`. Currently replacing words *radish* and *carrot*
+
+#### D7.7
+
+Not quite ready -__-
