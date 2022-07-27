@@ -15,7 +15,7 @@ class IndexView(generic.ListView):
     context_object_name = 'posts_list'
 
     def get_queryset(self):
-        return get_list_or_404(Post.objects.filter(type=self.kwargs['type']))
+        return get_list_or_404(Post.objects.filter(type=self.kwargs['post_type']))
 
 
 class SearchView(generic.ListView):
