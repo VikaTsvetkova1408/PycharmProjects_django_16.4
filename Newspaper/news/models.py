@@ -52,7 +52,7 @@ class Post(models.Model):
     category = models.ManyToManyField(Category, through='PostCategory')
 
     def get_absolute_url(self):
-        return reverse('news:news_detail', args=[str(self.id)])
+        return reverse('news:post_detail', args=[str(self.id)])
 
     def preview(self):
         return self.content[:124] + '...'

@@ -24,7 +24,7 @@
     <h4>Search results:</h4>
     {% for post in posts_list %}
         <div class="row padding card">
-            <a href="{% url 'news:news_detail' post.id %}">{{ post.title }}</a>
+            <a href="{% url 'news:post_detail' post.id %}">{{ post.title }}</a>
         </div>
     {% endfor %}
 </div>

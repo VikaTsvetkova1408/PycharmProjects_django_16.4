@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% load tags_extra %}
+
+{% block title%}
+{{ post.title }}
+{% endblock title %}
+
+{% block content %}
+<div class="row middle-align">
+    <div><h3 class="error-text">Post Deletion</h3></div>
+</div>
+
+<div class="medium-space"></div>
+
+<article class="error-container">
+    <div class="row">
+        <h5>{{ post.title }}</h5>
+        <div class="small-space"></div>
+        <div>
+            {{ post.content|truncatechars:24 }}
+        </div>
+    </div>
+</article>
+
+<div class="medium-space"></div>
+
+<div class="row">
+    <form action="" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Confirm" />
+    </form>
+</div>
+{% endblock content %}

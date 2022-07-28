@@ -7,7 +7,7 @@ New Post
 {% endblock title %}
 
 {% block content %}
-<form action="{% if post_type == 'NW' %}{% url 'news:news_create' %}{% else %}{% url 'news:articles_create' %}{% endif %}" method="post">
+<form action="" method="post">
     {% csrf_token %}
     {{ form.as_p }}
     <input type="submit" value="Save" />
