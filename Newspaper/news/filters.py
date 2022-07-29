@@ -7,5 +7,6 @@ class PostFilter(FilterSet):
         model = Post
         fields = {
             'title': ['icontains'],
-            'rating': ['gt', 'lt']
+            'rating': ['gt', 'lt'],
+            'timestamp': ['gt']
         }

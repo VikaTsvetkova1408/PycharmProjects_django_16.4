@@ -5,16 +5,32 @@
 {% block content %}
 
 <div class="row padding">
+    <div>{{ filterset.form.non_field_errors }}</div>
+
     <form action="" method="get">
-        {% for field in filterset.form %}
-        <div class="row">
-            <div class="field">
-            {{ field.errors }}
-            {{ field.label_tag }} {{ field }}
+        <nav class="no-wrap">
+            <div class="field label prefix border">
+                <i>search</i>
+                <input type="text" name="title__icontains">
+                <label>Search for...</label>
             </div>
-        </div>
-        {% endfor %}
-        <input type="submit" class="button border" value="Search" />
+            <button type="button">
+                <i>build_circle</i>
+                <div class="dropdown right no-wrap">
+                    <div  class="small-margin">
+                        <label for="input_date">Not earlier then:</label>
+                        <input type="date" id="input_date" name="timestamp__gt">
+                    </div>
+                    <div  class="small-margin">
+                        <label class="switch">
+                        <input type="checkbox" name="rating__gt" value="-1">
+                        <span>Non negative rating</span>
+                        </label>
+                    </div>
+                </div>
+            </button>
+            <input type="submit" class="button border" value="Search" />
+        </nav>
     </form>
 </div>
 
