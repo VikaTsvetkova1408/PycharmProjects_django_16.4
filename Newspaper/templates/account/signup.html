@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block title%}Sign Up{% endblock title %}
+
+{% block content %}
+
+<div class="medium-space"></div>
+
+<div class="row divider">
+    <nav class="middle-align">
+        <div>
+            <h3>Sign Up</h3>
+        </div>
+    </nav>
+
+</div>
+
+<div class="small-space"></div>
+
+<div class="row">
+    <nav class="middle-align no-wrap">
+
+    <form method="post" action="{% url 'account_signup' %}">
+      {% csrf_token %}
+
+        <div class="field label round border">
+            <input type="email" required autocomplete="off" id="id_email" name="email">
+            <label for="id_email">email</label>
+        </div>
+        <div class="field label round border">
+            <input type="text" required autocomplete="off" id="id_username" name="username">
+            <label for="id_username">username</label>
+        </div>
+        <div class="field label round border">
+            <input type="password" required autocomplete="off" id="id_password1" name="password1">
+            <label for="id_password1">password</label>
+        </div>
+        <div class="field label round border">
+            <input type="password" required autocomplete="off" id="id_password2" name="password2">
+            <label for="id_password2">confirm password</label>
+        </div>
+        <div class="small-space"></div>
+        <div class="center-align small-margin small-text">
+            <p>
+                Already have an account? Then <a href="{{ login_url }}" class="link">Sign Up</a>
+            </p>
+        </div>
+        <div class="small-space"></div>
+
+      {% if redirect_field_value %}
+      <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+      {% endif %}
+      <button class="round responsive" type="submit">Sign Up</button>
+    </form>
+    </nav>
+</div>
+
+{% if form.errors %}
+<div class="toast pink white-text active">
+  <i>error</i>
+    {% for error in form.errors %}
+        <span>{{ error }}</span>
+    {% endfor %}
+</div>
+{% endif %}
+
+{% endblock %}

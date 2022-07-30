@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block title%}Login{% endblock title %}
+
+{% block content %}
+
+<div class="medium-space"></div>
+
+<div class="row divider">
+    <div class="center-align">
+        <h6 class="center-align">Login</h6>
+    </div>
+
+</div>
+
+<div class="small-space"></div>
+
+<div class="row">
+    <nav class="middle-align no-wrap">
+
+        <form method="post" action="{% url 'account_login' %}">
+            {% csrf_token %}
+            <div class="field label round border">
+                <input type="email" required autocomplete="off" id="id_login" name="login">
+                <label for="id_login">email</label>
+            </div>
+            <div class="field label round border">
+                <input type="password" required autocomplete="off" id="id_password" name="password">
+                <label for="id_password">password</label>
+            </div>
+            <div class="small-margin">
+                <label class="switch">
+                <input type="checkbox" name="remember">
+                <span>Remember me</span>
+                </label>
+            </div>
+            <div class="small-space"></div>
+            <div class="center-align small-margin small-text">
+                <p>
+                    <a class="link" href="{% url 'account_reset_password' %}">Recover Password</a>
+                    |
+                    <a href="/accounts/signup" class="link">Sign Up</a>
+                </p>
+            </div>
+            <div class="small-space"></div>
+            {% if redirect_field_value %}
+            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+            {% endif %}
+
+            <button class="round responsive" type="submit">Login</button>
+        </form>
+    </nav>
+</div>
+
+<div class="large-space">
+
+</div>
+
+<div class="row">
+    <nav class="middle-align no-wrap">
+        {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+    </nav>
+</div>
+
+{% endblock content %}

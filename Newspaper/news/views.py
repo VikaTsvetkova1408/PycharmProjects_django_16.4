@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, get_list_or_404
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.views import generic
 from .models import Author, Post, Category, Comment
@@ -63,7 +64,7 @@ class PostCreate(generic.CreateView):
         return super().form_valid(form)
 
 
-class PostEdit(generic.UpdateView):
+class PostEdit(LoginRequiredMixin, generic.UpdateView):
     # no DRY WTF
     form_class = PostForm
     model = Post

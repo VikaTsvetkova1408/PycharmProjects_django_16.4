@@ -41,12 +41,13 @@
     </div>
 
     <div class="absolute right bottom small-margin small-text">{{ post.timestamp|date:'d E Y H:i' }}</div>
-
+    {% if user.is_authenticated %}
     <div class="absolute right top small-margin small-text">
         <a href="{% if post.type == 'NW' %}{% url 'news:news_edit' post.id %}{% else %}{% url 'news:articles_edit' post.id %}{% endif %}">Edit</a>
         |
         <a href="{% if post.type == 'NW' %}{% url 'news:news_delete' post.id %}{% else %}{% url 'news:articles_delete' post.id %}{% endif %}">Delete</a>
     </div>
+    {% endif %}
 
 </article>
 

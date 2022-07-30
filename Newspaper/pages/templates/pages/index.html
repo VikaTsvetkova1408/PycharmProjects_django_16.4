@@ -3,5 +3,15 @@
 {% block title%}Portal Index{% endblock title %}
 
 {% block content %}
-News Portal Index
+<div class="row">
+    <h3>News Portal Index</h3>
+    <div class="medium-space"></div>
+    <div>
+        <p>Welcome{% if user.is_authenticated %} back, {{ request.user.username }}{% endif %}!</p>
+    </div>
+
+</div>
+
+
+
 {% endblock content %}
