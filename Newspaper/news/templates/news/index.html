@@ -42,6 +42,13 @@
                     </div>
                 </div>
                 <div class="absolute bottom right small-margin small-text">{{ post.timestamp|date:'d E Y' }}</div>
+                {% if post.category %}
+                <div class="absolute left bottom small-margin small-text secondary-text">
+                    {% for category in post.category.all %}
+                        {{ category }}
+                    {% endfor %}
+                </div>
+                {% endif %}
             </article>
         </div>
         {% endfor %}

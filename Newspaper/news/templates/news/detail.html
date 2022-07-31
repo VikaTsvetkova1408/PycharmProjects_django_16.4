@@ -50,6 +50,14 @@
     </div>
     {% endif %}
 
+    {% if post.category %}
+    <div class="absolute left bottom small-margin small-text secondary-text">
+        {% for category in post.category.all %}
+            {{ category }}
+        {% endfor %}
+    </div>
+    {% endif %}
+
 </article>
 
 <div class="space"></div>
