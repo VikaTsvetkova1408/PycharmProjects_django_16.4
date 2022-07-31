@@ -161,4 +161,7 @@ ACCOUNT_EMAIL_VERIFICATION = 'none'
 LOGIN_REDIRECT_URL = 'pages:pages_index'
 LOGOUT_REDIRECT_URL = 'pages:pages_index'
 
+ACCOUNT_FORMS = {'signup': 'pages.forms.BasicSignupForm'}
+
 SITE_ID = 1
+

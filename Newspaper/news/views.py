@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, get_list_or_404
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.core.exceptions import PermissionDenied
 from django.urls import reverse_lazy
 from django.views import generic
 from .models import Author, Post, Category, Comment
@@ -47,11 +48,17 @@ class DetailView(generic.DetailView):
     model = Post
     template_name = 'news/detail.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['author'] = Author.objects.filter(user=self.request.user).first()
+        return context
 
-class PostCreate(generic.CreateView):
+
+class PostCreate(LoginRequiredMixin, PermissionRequiredMixin, generic.CreateView):
     form_class = PostForm
     model = Post
     template_name = 'news/create.html'
+    permission_required = ('news.add_post',)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -60,15 +67,24 @@ class PostCreate(generic.CreateView):
 
     def form_valid(self, form):
         post = form.save(commit=False)
+        post.author = Author.objects.filter(user=self.request.user).first()
         post.type = self.kwargs['post_type']
         return super().form_valid(form)
 
 
-class PostEdit(LoginRequiredMixin, generic.UpdateView):
+class PostEdit(LoginRequiredMixin, PermissionRequiredMixin, generic.UpdateView):
     # no DRY WTF
     form_class = PostForm
     model = Post
     template_name = 'news/create.html'
+    permission_required = ('news.change_post',)
+
+    def get_object(self, **kwargs):
+        obj = super().get_object(**kwargs)
+        author = Author.objects.filter(user=self.request.user).first()
+        if author != obj.author:
+            raise PermissionDenied
+        return obj
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -76,10 +92,18 @@ class PostEdit(LoginRequiredMixin, generic.UpdateView):
         return context
 
 
-class PostDelete(generic.DeleteView):
+class PostDelete(LoginRequiredMixin, PermissionRequiredMixin, generic.DeleteView):
     model = Post
     template_name = 'news/delete.html'
     success_url = reverse_lazy('news:news_index')
+    permission_required = ('news.change_post',)
+
+    def get_object(self, **kwargs):
+        obj = super().get_object(**kwargs)
+        author = Author.objects.filter(user=self.request.user).first()
+        if author != obj.author:
+            raise PermissionDenied
+        return obj
 
     def form_valid(self, form):
         if self.kwargs['post_type'] == 'AR':

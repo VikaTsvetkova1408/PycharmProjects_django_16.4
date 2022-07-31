@@ -67,7 +67,7 @@
                     <i>account_circle</i>
                     <span>{% user_display user %}</span>
                     <div class="dropdown left no-wrap">
-                        <a href="#">My profile</a>
+                        <a href="{% url 'pages:author_profile' %}">My profile</a>
                         <a href="{% url 'account_logout' %}">Log Out</a>
                     </div>
                 </button>

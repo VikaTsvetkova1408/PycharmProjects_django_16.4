@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% load account socialaccount%}
+
+{% block title%}User profile{% endblock title %}
+
+{% block content %}
+<div class="row">
+    <h3>Profile: {% user_display user %} {% if is_author %}<i>star</i>{% endif %}</h3>
+
+    <div class="medium-space"></div>
+    <div>
+        <p>...</p>
+        {% if not is_author %}
+        <a href="{% url 'pages:author_profile_upgrade' %}" class="button pink">Become an Author</a>
+
+        {% endif %}
+    </div>
+
+</div>
+{% endblock content %}
