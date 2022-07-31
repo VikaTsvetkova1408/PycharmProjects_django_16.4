@@ -1,11 +1,14 @@
 {% extends 'base.html' %}
 
+{% load tags_extra %}
+
 {% block title%}News Index{% endblock title %}
 
 {% block content %}
 
 <div class="small-space"></div>
 
+{% if author %}
 <div class="row">
     <nav class="right-align">
         <a href="{% if new_post_type == 'NW' %}{% url 'news:news_create' %}{% else %}{% url 'news:articles_create' %}{% endif %}" class="button round secondary">
@@ -14,6 +17,7 @@
         </a>
     </nav>
 </div>
+{% endif %}
 
 <div class="small-space"></div>
 
@@ -32,7 +36,7 @@
                     <div class="col">
                         <h5 class="no-margin"><a href="{% url 'news:post_detail' post.id %}">{{ post.title }}</a></h5>
                         <div>
-                            {{ post.content|truncatechars:48 }}
+                            {{ post.content|profanity|truncatechars:48 }}
                         </div>
                         <div class="space"></div>
                     </div>

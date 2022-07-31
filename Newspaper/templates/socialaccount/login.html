@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title%}Social Login{% endblock title %}
+
+{% block content %}
+
+<div class="medium-space"></div>
+
+<div class="row divider">
+    <div class="center-align">
+        {% if process == "connect" %}
+            <h6 class="center-align">{{ provider.name }} Connect</h6>
+        {% else %}
+            <h6 class="center-align">Sign in via {{ provider.name }}</h6>
+        {% endif %}
+    </div>
+
+</div>
+
+<div class="small-space"></div>
+
+<div class="row">
+    <nav class="middle-align no-wrap">
+
+        <form method="post">
+            {% csrf_token %}
+            <button class="round responsive" type="submit">Continue</button>
+        </form>
+    </nav>
+</div>
+
+{% endblock content %}

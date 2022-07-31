@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, get_list_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.contrib.auth.models import AnonymousUser
 from django.core.exceptions import PermissionDenied
 from django.urls import reverse_lazy
 from django.views import generic
@@ -20,6 +21,8 @@ class IndexView(generic.ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['new_post_type'] = self.kwargs['post_type']
+        if not isinstance(self.request.user, AnonymousUser):
+            context['author'] = Author.objects.filter(user=self.request.user).first()
         return context
 
     def get_queryset(self):
@@ -50,7 +53,8 @@ class DetailView(generic.DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['author'] = Author.objects.filter(user=self.request.user).first()
+        if not isinstance(self.request.user, AnonymousUser):
+            context['author'] = Author.objects.filter(user=self.request.user).first()
         return context
 
 
