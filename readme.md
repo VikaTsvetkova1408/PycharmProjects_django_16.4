@@ -10,4 +10,8 @@ Censor filter is called `profanity`. Currently replacing words *radish* and *car
 
 #### D7.7
 
-Not quite ready -__-
+Functional `/create` and `/edit` pages
+
+#### D8.6
+
+Functional user auth, social auth and ACLs
