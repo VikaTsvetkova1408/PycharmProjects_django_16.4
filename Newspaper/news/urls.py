@@ -23,4 +23,5 @@ urlpatterns = [
     path('', include(news_patterns), {'post_type': 'NW'}),
     path('', include(articles_patterns), {'post_type': 'AR'}),
     path('search/', views.SearchView.as_view(), name='posts_search'),
+    path('subscribe/<int:category_id>', views.Subscribe.as_view(), name='subscribe')
 ]

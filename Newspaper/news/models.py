@@ -26,12 +26,18 @@ class Author(models.Model):
 
 class Category(models.Model):
     title = models.CharField(max_length=64, unique=True)
+    subscribers = models.ManyToManyField(User, through='CategorySubscribers')
 
     def __str__(self):
         return self.title
 
     def __repr__(self):
         return f'<Category #{self.id}: {self.title}>'
+
+
+class CategorySubscribers(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
 
 
 class Post(models.Model):

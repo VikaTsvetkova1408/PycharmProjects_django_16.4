@@ -8,31 +8,40 @@
 
 <div class="small-space"></div>
 
-{% if author %}
 <div class="row">
     <div class="col s12 m6 l9">
         <nav class="no-wrap">
-            <a href="?category=" class="chip left-round top-round small-text indigo">All</a>
+            <a href="?category=" class="chip left-round top-round small-text">All</a>
             {% for category in categories %}
-                <a href="?category={{ category.id }}" class="chip left-round top-round small-text border">{{ category }}</a>
+                <a href="?category={{ category.id }}" class="chip left-round top-round small-text border
+                {% if request.GET.category == category.id|slugify %}green-border{% endif %}">{{ category }}</a>
             {% endfor %}
         </nav>
     </div>
     <div class="col s12 m6 l3">
         <nav class="no-wrap right-align">
-            {% if new_post_type == 'NW' %}
-            <a href="{% url 'news:news_create' %}" class="chip secondary">
-            {% else %}
-            <a href="{% url 'news:articles_create' %}" class="chip secondary">
-            {% endif %}
+            {% if current_category and current_category not in request.user.category_set.all %}
+            <a href="{% url 'news:subscribe' request.GET.category %}?next={{ request.path }}" class="button round pink">
                 <i>add</i>
-                <div>Create</div>
+                <div>Subscribe</div>
             </a>
+            {% endif %}
+
+            {% if author %}
+                {% if new_post_type == 'NW' %}
+                <a href="{% url 'news:news_create' %}" class="chip round green">
+                {% else %}
+                <a href="{% url 'news:articles_create' %}" class="chip round green">
+                {% endif %}
+                    <i>add</i>
+                    <div>Create</div>
+                </a>
+            {% endif %}
         </nav>
     </div>
 
 </div>
-{% endif %}
+
 
 <div class="small-space"></div>
 
