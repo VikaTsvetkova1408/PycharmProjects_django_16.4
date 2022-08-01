@@ -10,3 +10,9 @@ class PostFilter(FilterSet):
             'rating': ['gt', 'lt'],
             'timestamp': ['gt']
         }
+
+
+class PostCategoryFilter(FilterSet):
+    class Meta:
+        model = Post
+        fields = ['category']

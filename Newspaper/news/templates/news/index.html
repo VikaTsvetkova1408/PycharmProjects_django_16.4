@@ -10,12 +10,27 @@
 
 {% if author %}
 <div class="row">
-    <nav class="right-align">
-        <a href="{% if new_post_type == 'NW' %}{% url 'news:news_create' %}{% else %}{% url 'news:articles_create' %}{% endif %}" class="button round secondary">
-            <i>add</i>
-            <div>Create</div>
-        </a>
-    </nav>
+    <div class="col s12 m6 l9">
+        <nav class="no-wrap">
+            <a href="?category=" class="chip left-round top-round small-text indigo">All</a>
+            {% for category in categories %}
+                <a href="?category={{ category.id }}" class="chip left-round top-round small-text border">{{ category }}</a>
+            {% endfor %}
+        </nav>
+    </div>
+    <div class="col s12 m6 l3">
+        <nav class="no-wrap right-align">
+            {% if new_post_type == 'NW' %}
+            <a href="{% url 'news:news_create' %}" class="chip secondary">
+            {% else %}
+            <a href="{% url 'news:articles_create' %}" class="chip secondary">
+            {% endif %}
+                <i>add</i>
+                <div>Create</div>
+            </a>
+        </nav>
+    </div>
+
 </div>
 {% endif %}
 

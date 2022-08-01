@@ -7,12 +7,12 @@ from django.core.exceptions import PermissionDenied
 from django.urls import reverse_lazy
 from django.views import generic
 from .models import Author, Post, Category, Comment
-from .filters import PostFilter
+from .filters import PostFilter, PostCategoryFilter
 from .forms import PostForm
 
 
 class IndexView(generic.ListView):
-    # model = Post
+    model = Post
     ordering = 'timestamp'
     paginate_by = 10
     template_name = 'news/index.html'
@@ -21,13 +21,17 @@ class IndexView(generic.ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['new_post_type'] = self.kwargs['post_type']
+        context['categories'] = Category.objects.all()
         if not isinstance(self.request.user, AnonymousUser):
             context['author'] = Author.objects.filter(user=self.request.user).first()
         return context
 
     def get_queryset(self):
-        return get_list_or_404(Post.objects.filter(type=self.kwargs['post_type']))
-
+        qs = super().get_queryset()
+        qs = qs.filter(type=self.kwargs['post_type'])
+        self.filterset = PostCategoryFilter(self.request.GET, qs)
+        # return get_list_or_404(self.filterset.qs)
+        return self.filterset.qs
 
 class SearchView(generic.ListView):
     model = Post
