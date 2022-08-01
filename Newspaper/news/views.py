@@ -35,7 +35,6 @@ class IndexView(generic.ListView):
         qs = super().get_queryset()
         qs = qs.filter(type=self.kwargs['post_type'])
         self.filterset = PostCategoryFilter(self.request.GET, qs)
-        # return get_list_or_404(self.filterset.qs)
         return self.filterset.qs
 
 
