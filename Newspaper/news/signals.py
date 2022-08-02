@@ -15,5 +15,3 @@ def notify_subscribers(sender, instance, action, **kwargs):
                   'Go check it',
                   'newsletter@onlynews.xxx',
                   list(recepients))
-        # send_mail(subject='New Post')
-

@@ -155,8 +155,9 @@ LOGIN_URL = '/accounts/login'
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_USERNAME_REQUIRED = True
+ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = False
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
-ACCOUNT_EMAIL_VERIFICATION = 'none'
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 
 LOGIN_REDIRECT_URL = 'pages:pages_index'
 LOGOUT_REDIRECT_URL = 'pages:pages_index'
@@ -165,5 +166,7 @@ ACCOUNT_FORMS = {'signup': 'pages.forms.BasicSignupForm'}
 
 SITE_ID = 1
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_HOST_USER = 'noreply@onlynews.xxx'
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # Console backend for testing
 
