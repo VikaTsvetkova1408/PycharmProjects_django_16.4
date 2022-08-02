@@ -15,3 +15,7 @@ Functional `/create` and `/edit` pages
 #### D8.6
 
 Functional user auth, social auth and ACLs
+
+#### D9.5
+
+Sending emails and periodic tasks
