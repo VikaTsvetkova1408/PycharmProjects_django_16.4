@@ -1,0 +1,18 @@
+{% extends 'email.html' %}
+
+{% block title %}New Post!{% endblock title %}
+
+{% block content %}
+
+<h6>Here is new post in your subscribed category:</h6>
+
+<p>
+    <a href="{{ request.scheme }}://{{ request.get_host }}{% url 'news:post_detail' post.id %}">{{ post.title }}</a>
+</p>
+
+<p>
+    {{ post.content|truncatewords:48 }}
+</p>
+
+
+{% endblock content %}

@@ -1,0 +1,19 @@
+{% extends 'email.html' %}
+
+{% block title %}Your weekly digest!{% endblock title %}
+
+{% block content %}
+
+<h3>Hello, {{ user.firstname }}!</h3>
+
+<h6>Here is your weekly digest in category "{{ category.title }}":</h6>
+
+<ul>
+{% for post in posts %}
+    <li>
+        <a href="{{ request.scheme }}://{{ request.get_host }}{% url 'news:post_detail' post.id %}">{{ post.title }}</a>
+    </li>
+{% endfor %}
+</ul>
+
+{% endblock content %}
