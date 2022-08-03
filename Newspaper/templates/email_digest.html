@@ -1,5 +1,7 @@
 {% extends 'email.html' %}
 
+{% load tags_extra %}
+
 {% block title %}Your weekly digest!{% endblock title %}
 
 {% block content %}
@@ -11,7 +13,7 @@
 <ul>
 {% for post in posts %}
     <li>
-        <a href="{{ request.scheme }}://{{ request.get_host }}{% url 'news:post_detail' post.id %}">{{ post.title }}</a>
+        <a href="{{ post.get_absolute_url|site_domain }}">{{ post.title }}</a>
     </li>
 {% endfor %}
 </ul>
