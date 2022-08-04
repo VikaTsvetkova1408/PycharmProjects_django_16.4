@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
+from django.core.cache import cache
 
 
 class Author(models.Model):
@@ -56,6 +57,10 @@ class Post(models.Model):
     timestamp = models.DateTimeField('Timestamp ', auto_now_add=True)
     rating = models.IntegerField(default=0)
     category = models.ManyToManyField(Category, through='PostCategory')
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        cache.delete(f'post#{self.pk}')
 
     def get_absolute_url(self):
         return reverse('news:post_detail', args=[str(self.id)])

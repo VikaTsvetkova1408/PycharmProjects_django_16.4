@@ -1,4 +1,5 @@
 from django.urls import path, include
+from django.views.decorators.cache import cache_page
 
 from . import views
 
@@ -19,7 +20,7 @@ articles_patterns = [
 ]
 
 urlpatterns = [
-    path('post/<int:pk>', views.DetailView.as_view(), name='post_detail'),
+    path('post/<int:pk>', cache_page(360)(views.DetailView.as_view()), name='post_detail'),
     path('', include(news_patterns), {'post_type': 'NW'}),
     path('', include(articles_patterns), {'post_type': 'AR'}),
     path('search/', views.SearchView.as_view(), name='posts_search'),
