@@ -153,6 +153,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_URL = '/accounts/login'
 
+# Allauth
+
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_USERNAME_REQUIRED = True
@@ -165,12 +167,17 @@ LOGOUT_REDIRECT_URL = 'pages:pages_index'
 
 ACCOUNT_FORMS = {'signup': 'pages.forms.BasicSignupForm'}
 
+# Sites Framework
+
 SITE_ID = 1
+
+# Email
 
 EMAIL_HOST_USER = 'noreply@onlynews.xxx'
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # Console backend for testing
 
+# APScheduler
 
 APSCHEDULER_DATETIME_FORMAT = "N j, Y, f:s a"
 APSCHEDULER_RUN_NOW_TIMEOUT = 25  # Seconds
@@ -184,3 +191,10 @@ SCHEDULER_CONFIG = {
 }
 SCHEDULER_AUTOSTART = True
 
+# Celery
+
+CELERY_BROKER_URL = 'redis://localhost:6379'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
