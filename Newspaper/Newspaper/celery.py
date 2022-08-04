@@ -12,7 +12,7 @@ app.autodiscover_tasks()
 app.conf.beat_schedule = {
     'weekly_digest': {
         'task': 'news.tasks.weekly_digest',
-        'schedule': crontab(day_of_week='fri', hour='08', minute='00')
+        'schedule': crontab(day_of_week='mon', hour='08', minute='00')
     }
 }
 
