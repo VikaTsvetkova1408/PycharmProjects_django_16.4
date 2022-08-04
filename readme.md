@@ -19,3 +19,11 @@ Functional user auth, social auth and ACLs
 #### D9.5
 
 Sending emails and periodic tasks
+
+#### D10.5
+
+Redis and Celery
+
+#### D11
+
+Redis caching
