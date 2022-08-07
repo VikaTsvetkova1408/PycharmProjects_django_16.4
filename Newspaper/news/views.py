@@ -1,6 +1,5 @@
-from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render, get_object_or_404, get_list_or_404, redirect
+from django.http import HttpResponse
+from django.shortcuts import redirect
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.contrib.auth.models import AnonymousUser
@@ -8,7 +7,7 @@ from django.core.exceptions import PermissionDenied
 from django.urls import reverse_lazy
 from django.views import generic, View
 from django.core.cache import cache
-from .models import Author, Post, Category, Comment
+from .models import Author, Post, Category
 from .filters import PostFilter, PostCategoryFilter
 from .forms import PostForm
 

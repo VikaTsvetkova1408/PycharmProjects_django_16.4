@@ -1,29 +1,29 @@
 # News portal (SF 07.2022)
 
-#### D5.9
+## D5.9
 
 Commands for Django shell in cmd.py
 
-#### D6.6
+## D6.6
 
 Censor filter is called `profanity`. Currently replacing words *radish* and *carrot*
 
-#### D7.7
+## D7.7
 
 Functional `/create` and `/edit` pages
 
-#### D8.6
+## D8.6
 
 Functional user auth, social auth and ACLs
 
-#### D9.5
+## D9.5
 
 Sending emails and periodic tasks
 
-#### D10.5
+## D10.5
 
 Redis and Celery
 
-#### D11
+## D11
 
 Redis caching
