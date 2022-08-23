@@ -207,3 +207,37 @@ CACHES = {
         'LOCATION': 'redis://localhost:6379',
     }
 }
+
+# Logging
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'console': {
+            'format': '%(name)-12s %(levelname)-8s %(message)s'
+        }
+    },
+    'filters': {
+        'require_debug_true': {
+            '()': 'django.utils.log.RequireDebugTrue'
+        }
+    },
+    'handlers': {
+        'console': {
+            'level': 'INFO',
+            'filters': 'require_debug_true',
+            'class': 'logging.StreamHandler',
+            'formatter': 'console'
+        },
+        'mail_admins': {
+            'level': 'ERROR'
+        }
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'propagate': True
+        }
+    }
+}
